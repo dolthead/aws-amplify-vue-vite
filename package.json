@@ -1,0 +1,26 @@
+{
+  "name": "aws-amplify",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@aws-amplify/ui-components": "^1.9.6",
+    "@aws-amplify/ui-vue": "^2.3.15",
+    "aws-amplify": "^4.3.20",
+    "sass": "^1.51.0",
+    "sass-loader": "^12.6.0",
+    "vue": "^3.2.25",
+    "vue-template-compiler": "^2.6.14",
+    "wave-ui": "^2.37.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.1",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.5",
+    "vue-tsc": "^0.34.7"
+  }
+}
