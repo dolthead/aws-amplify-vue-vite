@@ -1,35 +1,27 @@
 <template>
   <div class="container">
-    <!-- <div class="welcome"> -->
-      <!-- <authenticator :login-mechanisms="['email']"> -->
-      <authenticator>
-        <transition name="f" appear>
-          <form @submit.prevent="addItem()">
-            <label>New item</label>
-            <input type="text" v-model="msg" autocomplete="off">
-            <button>Add item</button>
-          </form>
-        </transition>
-        <TodoList :list="data" :delete-item="deleteItem" />
-        <transition name="m" appear>
-          <w-notification v-show="showNotification" warning :bottom="true" round shadow transition="bounce">
-            Please enter a value
-          </w-notification>
-        </transition>
-        <!-- <amplify-sign-out /> -->
-
-
-        <h1>Hello {{ auth.user?.username }}!</h1>
-        <button @click="auth.signOut">Sign Out</button>
-      </authenticator>
-    <!-- </div> -->
-        <!-- <amplify-sign-out /> -->
+    <authenticator>
+      <transition name="f" appear>
+        <form @submit.prevent="addItem()">
+          <label>New item</label>
+          <input type="text" v-model="msg" autocomplete="off">
+          <button>Add item</button>
+        </form>
+      </transition>
+      <TodoList :list="data" :delete-item="deleteItem" />
+      <transition name="m" appear>
+        <w-notification v-show="showNotification" warning :bottom="true" round shadow transition="bounce">
+          Please enter a value
+        </w-notification>
+      </transition>
+      <h1>Hello {{ auth.user?.username }}!</h1>
+      <button @click="auth.signOut">Sign Out</button>
+    </authenticator>
   </div>
 </template>
 
 <script setup lang="ts">
 import TodoList from './TodoList.vue'
-import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components'
 import { ref, onMounted } from 'vue';
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-vue";
 
@@ -44,16 +36,16 @@ let data = ref([
   { id: 3, name: 'Item 3' },
 ])
 
-onMounted(async () => {     
-  await auth.signOut();
-  console.log('mounted')
-  onAuthUIStateChange((state, authUser) => {
-    console.log('state changed')
-    if (state === AuthState.SignedIn) {
-      console.log('logged in')
-      user.value = authUser;
-    }
-  })
+onMounted(() => {
+  // await auth.signOut();
+  // console.log('mounted')
+  // onAuthUIStateChange((state, authUser) => {
+  //   console.log('state changed')
+  //   if (state === AuthState.SignedIn) {
+  //     console.log('logged in')
+  //     user.value = authUser;
+  //   }
+  // })
 })
 
 function addItem() {
