@@ -15,8 +15,10 @@
 </template>
 
 <script setup lang="ts">
+    import { Item } from '../API';
+
     const props = defineProps<{
-        list: Array<any>,
+        list: Array<Item>,
         deleteItem: Function
     }>()
 </script>
