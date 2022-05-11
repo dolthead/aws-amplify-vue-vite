@@ -22,7 +22,9 @@
         </w-notification>
       </transition>
       <div>User: {{ auth.user?.username }}</div>
-      <button @click="auth.signOut">Sign Out</button>
+      <form>
+        <button @click="auth.signOut">Sign Out</button>
+      </form>
     </authenticator>
   </div>
 </template>
@@ -102,6 +104,7 @@
       );
       console.log('Item created...');
       data.value = [...data.value, r.data.createItem];
+      msg.value = '';
     } catch (error) {
       console.log('There was an error creating the item...', error);
     }
