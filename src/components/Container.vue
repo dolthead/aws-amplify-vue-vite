@@ -44,11 +44,7 @@
   let showNotification = ref(false);
   const timeout = 2000;
   let loading = ref(false);
-  let data: Ref<Array<Item>> = ref([
-    // { id: 1, name: 'Item 1' },
-    // { id: 2, name: 'Item 2' },
-    // { id: 3, name: 'Item 3' },
-  ]);
+  let data: Ref<Array<Item>> = ref([]);
 
   onMounted(() => {
     // await auth.signOut();
@@ -88,7 +84,7 @@
   const getData = async () => {
     try {
       loading.value = true;
-      const r = await API.graphql(graphqlOperation(listItems));
+      const r: any = await API.graphql(graphqlOperation(listItems));
       data.value = r.data.listItems.items;
     } catch (error) {
       console.log('There was an error loading the items...', error);
@@ -101,7 +97,7 @@
     const name = msg.value;
     const item = { name };
     try {
-      const r = await API.graphql(
+      const r: any = await API.graphql(
         graphqlOperation(createItem, { input: item })
       );
       console.log('Item created...');
@@ -135,7 +131,7 @@
     }
   };
 
-  const Delete = (idx) => {
+  const Delete = (idx: string) => {
     deleteItemLocal(idx);
   };
 </script>
